@@ -1,0 +1,44 @@
+body {
+	font-family: sans-serif;
+}
+
+
+#main {
+	/*width: 20000px;*/
+	/*padding-top: 50px;*/
+	/*display: block;*/
+	overflow: hidden;
+}
+
+#mini {
+	margin-top: 50px;
+}
+
+.week-date {
+	text-align: center;
+}
+
+div .week-div {
+	float: left;
+	width: 200px;
+	text-align: center;
+	margin-right: 50px;
+}
+
+#songInfo {
+	display: block;
+	font-weight: bold;
+}
+
+/*#toggleText {
+	position: fixed;
+	margin-top: 50px;
+}
+
+#selectYear {
+	position: fixed;
+}*/
+
+#controls {
+	/*position: fixed;*/
+}
