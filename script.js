@@ -1,9 +1,7 @@
-var year = billboard[0];
-
-
-var ENTRY_MAP = {};
+year = billboard[0];
 
 var COLOR_FREQ = .10;
+var CURVE_POINTS = [.4, .6];
 
 function getColor(length, maxLength) {
 	var i = length - 6;
@@ -16,349 +14,126 @@ function getColor(length, maxLength) {
 function WeekChart() {
 	this.init = function(divRef) {
 		var self = this;
-		var width = 200;
-		var gapWidth = 75;
-		var height = 20;
-		var yInc = 22;
-		var topGap = 5;
-		var ribbonStartY = 25;
+		width = 200;
+		gapWidth = 75;
+		height = 20;
+		yInc = 22;
+		topGap = 5;
+		ribbonStartY = 25;
 
 		var x = 0;
 
-		
-
 		var weeks = year.weeks;
-		var nWeeks = weeks.length;
+		nWeeks = weeks.length;
 		paper = new Raphael(document.getElementById(divRef), width * nWeeks + gapWidth * (nWeeks - 1), topGap + yInc * 11);
 		for (var i = 0; i < nWeeks; i++) {
 			var week = weeks[i];
-			var topTen = week.top_ten;
-			var y = topGap;
-			var dateText = paper.text(x + width / 2, y + height / 2, week.date).attr({ "font-weight": "bold", "font-size": "14em" });
-			y = ribbonStartY;
-
-
-			for (var j = 0; j < 10; j++) {
-				var entry = topTen[j];
-				var id = entry.song_order;
-				var date = week.date;
-				if (!ENTRY_MAP.hasOwnProperty(id)) {
-					ENTRY_MAP[id] = entry;
-				}
-				// if (!ENTRY_MAP.hasOwnProperty(id)) {
-				// 	ENTRY_MAP[id] = [];
-				// }
-				// var newDate = {};
-				// newDate[date] = entry;
-				// ENTRY_MAP[id].push(newDate)
-				// var fillColor = COLORS[entry.song_order % 6];
-				var fillColor = getColor(id, 255);
-
-				var upperRectBorder = paper.path([["M", x, y], ["L", x + width, y]]);
-				var lowerRectBorder = paper.path([["M", x, y + height], ["L", x + width, y + height]]);
-				upperRectBorder.node.setAttribute("class", "song-ribbon-" + entry.song_order + "-border");
-				lowerRectBorder.node.setAttribute("class", "song-ribbon-" + entry.song_order + "-border");
-				upperRectBorder.toBack();
-				lowerRectBorder.toBack();
-				lowerRectBorder.attr({ "stroke": "white" });
-				upperRectBorder.attr({ "stroke": "white" });
-
-
-				var entryRect = paper.rect(x, y, width, height);
-				entryRect.attr({ "stroke": "none", "fill": fillColor });
-				entryRect.node.setAttribute("class", "song-ribbon-" + entry.song_order);
-				
-				entryRect.toBack();
-
-				addFlyover(entryRect.node, entry, fillColor);
-				
-				
-
-
-				// $(songLabel.node).addClass(".song-label");
-
-				if (i > 0) {
-					var prevWeekPos = entry.prev_week_position;
-					 if (entry.first_appearance) {
-						var startCap = paper.ellipse(x, y + height / 2, height / 2, height / 2);
-						startCap.node.setAttribute("class", "song-ribbon-" + entry.song_order + "-border");
-						startCap.attr({ "stroke": "white", "fill": fillColor });
-						startCap.toBack();
-					} else if (prevWeekPos <= 10) {
-						var upperJoinBorder = paper.path([["M", x - gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY], ["C", x - .6 * gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY, x - .4 * gapWidth, y, x, y]]);
-						var lowerJoinBorder = paper.path([["M", x, y + height], ["C", x - .4 * gapWidth, y + height, x - .6 * gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY, x - gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY]]);
-						upperJoinBorder.toBack();
-						lowerJoinBorder.toBack();
-						upperJoinBorder.attr({ "stroke": "white" });
-						lowerJoinBorder.attr({ "stroke": "white" });
-						upperJoinBorder.node.setAttribute("class", "song-ribbon-" + entry.song_order + "-border");
-						lowerJoinBorder.node.setAttribute("class", "song-ribbon-" + entry.song_order + "-border");
-						var joiner = paper.path([["M", x, y], ["C", x - .4 * gapWidth, y, x - .6 * gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY, x - gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY], ["L", x - gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY],
-														["C", x - .6 * gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY, x - .4 * gapWidth, y + height, x, y + height], ["L", x, y]]);
-						joiner.attr({ "stroke": "none", "fill": fillColor });
-						joiner.toBack();
-						joiner.node.setAttribute("class", "song-ribbon-" + entry.song_order);
-						addFlyover(joiner.node, entry, fillColor);
-					} else {
-						var pickupRibbon = paper.path([["M", x, y], ["L", x - height / 2, y + height / 2], ["L", x, y + height], ["Z"]]);
-						pickupRibbon.attr({ "stroke": "none", "fill": fillColor });
-						pickupRibbon.toBack();
-					}
-				}
-
-				if (i < 51) {
-					if (entry.last_appearance) {
-						var endCap = paper.ellipse(x + width, y + height / 2, height / 2, height / 2);
-						endCap.node.setAttribute("class", "song-ribbon-" + entry.song_order + "-border");
-						endCap.attr({ "stroke": "white", "fill": fillColor });
-						endCap.toBack();
-					} else if (!hasSong(weeks[i + 1].top_ten, entry.title)) {
-						var leaveOffRibbon = paper.path([["M", x + width, y], ["L", x + width - height / 2, y + height / 2], ["L", x + width, y + height]]);
-						leaveOffRibbon.attr({ "stroke": "none", "fill": "white" });
-						// leaveOffRibbon.toBack();
-					}
-				}
-
-				var songLabel = paper.text(x + width / 2, y + height / 2, entry.title);
-				// songLabel.attr({ "font-size": "12em" });
-				songLabel.node.setAttribute("class", "song-ribbon-" + entry.song_order + " song-label");
-				/* INSERT SUPPORT FOR TRUNCATING LONG LABELS */
-
-				
-				if (entry.first_appearance) {
-					songLabel.attr({ "font-weight": "bold", "font-size": "13em" });
-					
-				} else {
-					songLabel.attr({ "font-size": "12em", "font-color": "gray" });
-				}
-
-				var bbox = songLabel.getBBox();
-				if (bbox.width > width) {
-					// songLabel.node.textContent = entry.title.slice(0, 20) + "...";
-					// console.log("wider", songLabel.node.textContent, entry.title.slice(0, 20) + "...");
-					songLabel.attr("text", entry.title.slice(0, 20) + "...");
-				}
-
-				addFlyover(songLabel.node, entry, fillColor);
-				songLabel.toFront();
-
-				y += yInc;
-
-
-			}
+			var nextTen = i < nWeeks - 1 ? weeks[i + 1].top_ten : null;
+			drawWeek(i, week.top_ten, nextTen, week.date, x);
 			x += (width + gapWidth);
 		}
 	}
 
-	this.staticGraphic = function(divRef) {
-		var self = this;
-		var width = 30;
-		var gapWidth = 0;
-		var height = 5;
-		var yInc = 5;
-		var topGap = 5;
-		var ribbonStartY = 0;
-		paper = new Raphael(document.getElementById(divRef), width * 52 + gapWidth * (51), (height * 10 + 2) * 58);
+	function drawWeek(i, topTen, nextTen, date, x) {
+		var y = topGap;
+		var dateText = paper.text(x + width / 2, y + height / 2, date).attr({ "font-weight": "bold", "font-size": "14em" });
+		y = ribbonStartY;
 
-		for (var n = 0, nn = billboard.length; n < nn; n++) {
-			console.log(ribbonStartY);
-			year = billboard[n];
-			var x = 0;
-
-			var weeks = year.weeks;
-			var nWeeks = weeks.length;
-			
-			for (var i = 0; i < nWeeks; i++) {
-				var week = weeks[i];
-				var topTen = week.top_ten;
-				y = ribbonStartY;
-
-
-				for (var j = 0; j < 10; j++) {
-					var entry = topTen[j];
-					var id = entry.song_order;
-					var date = week.date;
-					var fillColor = getColor(id, 255);
-
-					// var upperRectBorder = paper.path([["M", x, y], ["L", x + width, y]]);
-					// var lowerRectBorder = paper.path([["M", x, y + height], ["L", x + width, y + height]]);
-					// upperRectBorder.toBack();
-					// lowerRectBorder.toBack();
-					// lowerRectBorder.attr({ "stroke": "white" });
-					// upperRectBorder.attr({ "stroke": "white" });
-
-
-					var entryRect = paper.rect(x, y, width, height);
-					entryRect.attr({ "stroke": "none", "fill": fillColor });
-					
-					entryRect.toBack();
-					
-					
-
-
-					// $(songLabel.node).addClass(".song-label");
-
-					if (i > 0) {
-						var prevWeekPos = entry.prev_week_position;
-						if (prevWeekPos <= 10) {
-							// var upperJoinBorder = paper.path([["M", x - gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY], ["C", x - .6 * gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY, x - .4 * gapWidth, y, x, y]]);
-							// var lowerJoinBorder = paper.path([["M", x, y + height], ["C", x - .4 * gapWidth, y + height, x - .6 * gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY, x - gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY]]);
-							// upperJoinBorder.toBack();
-							// lowerJoinBorder.toBack();
-							// upperJoinBorder.attr({ "stroke": "white" });
-							// lowerJoinBorder.attr({ "stroke": "white" });
-							// var joiner = paper.path([["M", x, y], ["C", x - .4 * gapWidth, y, x - .6 * gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY, x - gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY], ["L", x - gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY],
-							// 								["C", x - .6 * gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY, x - .4 * gapWidth, y + height, x, y + height], ["L", x, y]]);
-							// joiner.attr({ "stroke": "none", "fill": fillColor });
-							// joiner.toBack();
-						}
-					}
-
-					y += yInc;
-
-
-				}
-				x += (width + gapWidth);
-			}
-			ribbonStartY += height * 10 + 2;
+		for (var j = 0; j < 10; j++) {
+			var curEntry = topTen[j];
+			var inNextWeek = hasSong(nextTen, curEntry.title);
+			drawEntry(i, curEntry, inNextWeek, x, y);
+			y += yInc;
 		}
-
-		
 	}
 
-	this.completeChart = function(divRef) {
-		var self = this;
-		var width = 200;
-		var gapWidth = 75;
-		var height = 20;
-		var yInc = 22;
-		var topGap = 5;
+	function drawEntry(i, entry, inNextWeek, x, y) {
+		var id = entry.song_order;
 
-		var x = 0;
+		var fillColor = getColor(id, 255);
 
-		paper = new Raphael(document.getElementById(divRef), (width * 52 + gapWidth * 51) * 57, topGap + yInc * 11);
-		for (var k = billboard.length - 6, kk = billboard.length; k < kk; k++) {
-			console.log(x);
-			var year = billboard[k];
+		rectBorder(x, y, id);
+		rectBorder(x, y + height, id);
 
-			var weeks = year.weeks;
-			for (var i = 0, ii = weeks.length; i < ii; i++) {
-				var week = weeks[i];
-				var topTen = week.top_ten;
-				var y = topGap;
-				var dateText = paper.text(x + width / 2, y + height / 2, week.date);
-				y = ribbonStartY;
+		var entryRect = paper.rect(x, y, width, height);
+		entryRect.attr({ "stroke": "none", "fill": fillColor });
+		entryRect.node.setAttribute("class", "song-ribbon-" + entry.song_order);
+		
+		entryRect.toBack();
 
+		addFlyover(entryRect.node, entry, fillColor);
 
-				for (var j = 0; j < 10; j++) {
-					var entry = topTen[j];
-					var id = entry.all_time_order;
-					var date = week.date;
-					// if (!ENTRY_MAP.hasOwnProperty(id)) {
-					// 	ENTRY_MAP[id] = [];
-					// }
-					// var newDate = {};
-					// newDate[date] = entry;
-					// ENTRY_MAP[id].push(newDate)
-					// var fillColor = COLORS[entry.song_order % 6];
-					var fillColor = getColor(id, 255);
+		if (i > 0) {
+			var prevWeekPos = entry.prev_week_position;
+			if (entry.first_appearance) {
+				cap(x, y, height / 2, id, fillColor);
+			} else if (prevWeekPos <= 10) {
+				joinBorder(x, y, (prevWeekPos - 1) * yInc + ribbonStartY, id);
+				joinBorder(x, y + height, (prevWeekPos - 1) * yInc + height + ribbonStartY, id);
 
-					var upperRectBorder = paper.path([["M", x, y], ["L", x + width, y]]);
-					var lowerRectBorder = paper.path([["M", x, y + height], ["L", x + width, y + height]]);
-					upperRectBorder.node.setAttribute("class", "song-ribbon-" + id + "-border");
-					lowerRectBorder.node.setAttribute("class", "song-ribbon-" + id + "-border");
-					upperRectBorder.toBack();
-					lowerRectBorder.toBack();
-					lowerRectBorder.attr({ "stroke": "white" });
-					upperRectBorder.attr({ "stroke": "white" });
-
-
-					var entryRect = paper.rect(x, y, width, height);
-					entryRect.attr({ "stroke": "none", "fill": fillColor });
-					entryRect.node.setAttribute("class", "song-ribbon-" + id);
-					
-					entryRect.toBack();
-
-					addFlyover(entryRect.node, entry, fillColor);
-					
-					var songLabel = paper.text(x + width / 2, y + height / 2, entry.title);
-					// songLabel.attr({ "font-size": "12em" });
-					songLabel.node.setAttribute("class", "song-ribbon-" + id + " song-label");
-
-					
-					if (entry.first_appearance) {
-						songLabel.attr({ "font-weight": "bold", "font-size": "13em" });
-						
-					} else {
-						songLabel.attr({ "font-size": "12em", "font-color": "gray" });
-					}
-
-					var bbox = songLabel.getBBox();
-					if (bbox.width > width) {
-						// songLabel.node.textContent = entry.title.slice(0, 20) + "...";
-						// console.log("wider", songLabel.node.textContent, entry.title.slice(0, 20) + "...");
-						songLabel.attr("text", entry.title.slice(0, 20) + "...");
-					}
-
-					addFlyover(songLabel.node, entry, fillColor);
-
-
-					// $(songLabel.node).addClass(".song-label");
-
-					// if (i > 0) {
-						var prevWeekPos = entry.prev_week_position;
-						if (prevWeekPos <= 10) {
-							var upperJoinBorder = paper.path([["M", x - gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY], ["C", x - .6 * gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY, x - .4 * gapWidth, y, x, y]]);
-							var lowerJoinBorder = paper.path([["M", x, y + height], ["C", x - .4 * gapWidth, y + height, x - .6 * gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY, x - gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY]]);
-							upperJoinBorder.toBack();
-							lowerJoinBorder.toBack();
-							upperJoinBorder.attr({ "stroke": "white" });
-							lowerJoinBorder.attr({ "stroke": "white" });
-							upperJoinBorder.node.setAttribute("class", "song-ribbon-" + id + "-border");
-							lowerJoinBorder.node.setAttribute("class", "song-ribbon-" + id + "-border");
-							var joiner = paper.path([["M", x, y], ["C", x - .4 * gapWidth, y, x - .6 * gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY, x - gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY], ["L", x - gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY],
-															["C", x - .6 * gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY, x - .4 * gapWidth, y + height, x, y + height], ["L", x, y]]);
-							joiner.attr({ "stroke": "none", "fill": fillColor });
-							joiner.toBack();
-							joiner.node.setAttribute("class", "song-ribbon-" + id);
-							addFlyover(joiner.node, entry, fillColor);
-						} else if (entry.first_appearance) {
-							var startCap = paper.ellipse(x, y + height / 2, height / 2, height / 2);
-							startCap.node.setAttribute("class", "song-ribbon-" + id + "-border");
-							startCap.attr({ "stroke": "white", "fill": fillColor });
-							startCap.toBack();
-						} else {
-							var pickupRibbon = paper.path([["M", x, y], ["L", x - height / 2, y + height / 2], ["L", x, y + height], ["Z"]]);
-							pickupRibbon.attr({ "stroke": "none", "fill": fillColor });
-							pickupRibbon.toBack();
-						}
-					// }
-
-					if (i < 51) {
-						if (entry.last_appearance) {
-							var endCap = paper.ellipse(x + width, y + height / 2, height / 2, height / 2);
-							endCap.node.setAttribute("class", "song-ribbon-" + id + "-border");
-							endCap.attr({ "stroke": "white", "fill": fillColor });
-							endCap.toBack();
-						} else if (!hasSong(weeks[i + 1].top_ten, entry.title)) {
-							var leaveOffRibbon = paper.path([["M", x + width, y], ["L", x + width - height / 2, y + height / 2], ["L", x + width, y + height]]);
-							leaveOffRibbon.attr({ "stroke": "none", "fill": "white" });
-							// leaveOffRibbon.toBack();
-						}
-					}
-
-					y += yInc;
-
-
-				}
-				x += (width + gapWidth);
+				var joiner = paper.path([["M", x, y], ["C", x - .4 * gapWidth, y, x - .6 * gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY, x - gapWidth, (prevWeekPos - 1) * yInc + ribbonStartY], ["L", x - gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY],
+												["C", x - .6 * gapWidth, (prevWeekPos - 1) * yInc + height + ribbonStartY, x - .4 * gapWidth, y + height, x, y + height], ["L", x, y]]);
+				joiner.attr({ "stroke": "none", "fill": fillColor });
+				joiner.toBack();
+				joiner.node.setAttribute("class", "song-ribbon-" + entry.song_order);
+				addFlyover(joiner.node, entry, fillColor);
+			} else {
+				var pickupRibbon = paper.path([["M", x, y], ["L", x - height / 2, y + height / 2], ["L", x, y + height], ["Z"]]);
+				pickupRibbon.attr({ "stroke": "none", "fill": fillColor });
+				pickupRibbon.toBack();
 			}
 		}
 
-		
+		if (i < nWeeks - 1) {
+			if (entry.last_appearance) {
+				cap(x + width, y, height / 2, id, fillColor);
+			} else if (!inNextWeek) {
+				var leaveOffRibbon = paper.path([["M", x + width, y], ["L", x + width - height / 2, y + height / 2], ["L", x + width, y + height]]);
+				leaveOffRibbon.attr({ "stroke": "none", "fill": "white" });
+			}
+		}
+
+		var songLabel = paper.text(x + width / 2, y + height / 2, entry.title);
+		songLabel.node.setAttribute("class", "song-ribbon-" + entry.song_order + " song-label");
+
+		if (entry.first_appearance) {
+			songLabel.attr({ "font-weight": "bold", "font-size": "13em" });	
+		} else {
+			songLabel.attr({ "font-size": "12em", "font-color": "gray" });
+		}
+
+		var bbox = songLabel.getBBox();
+		if (bbox.width > width) {
+			songLabel.attr("text", entry.title.slice(0, 20) + "...");
+		}
+
+		addFlyover(songLabel.node, entry, fillColor);
+		songLabel.toFront();
 	}
 
+	function rectBorder(xPos, yPos, id) {
+		var rectBorder = paper.path([["M", xPos, yPos], ["L", xPos + width, yPos]]).attr({ "stroke": "white" });
+		rectBorder.node.setAttribute("class", "song-ribbon-" + id + "-border");
+		rectBorder.toBack();
+	}
+
+	function cap(xPos, yPos, radius, id, color) {
+		var cap = paper.ellipse(xPos, yPos + radius, radius, radius).attr({ "stroke": "white", "fill": color });
+		cap.node.setAttribute("class", "song-ribbon-" + id + "-border");
+		cap.toBack();
+	}
+
+	function joinBorder(xPos, startY, endY, id) {
+		var c1 = CURVE_POINTS[0];
+		var c2 = CURVE_POINTS[1];
+		var joinBorder = paper.path([["M", xPos - gapWidth, endY], ["C", xPos - c2 * gapWidth, endY, xPos - c1 * gapWidth, startY, xPos, startY]]);
+		joinBorder.attr({ "stroke": "white" });
+		joinBorder.toBack()
+		joinBorder.node.setAttribute("class", "song-ribbon-" + id + "-border");
+	}
+	
 	function hasSong(topTen, title) {
+		if (!topTen) return false;
 		for (var i = 0; i < topTen.length; i++) {
 			if (topTen[i].title === title) return true;
 		}
@@ -387,8 +162,6 @@ window.onload = function() {
 	year = billboard[55];
 
 	wc.init('main');
-	// wc.staticGraphic('main');
-	// wc.completeChart('main');
 
 	$('#songInfo').css("visibility", "hidden");
 	
@@ -413,17 +186,9 @@ window.onload = function() {
 		if ($(this).val() == -1) return;
 		year = billboard[$(this).val()];
 		$('#main').empty();
-		// if ($("#selectYear option:selected").text() == 2013) {
-		// 	$('#main').html(2013_rendered);
-		// 	console.log(2013_rendered);
-		// 	console.log("2013");
-		// } else {
-			wc.init('main');
+		wc.init('main');
 		mainDiv.scrollLeft = 0;
-		// }
 	});
-
-	
 
 	$("body").bind('mousewheel DOMMouseScroll', function(event) {
 		if (event.originalEvent.wheelDelta) {
@@ -456,34 +221,4 @@ window.onload = function() {
     }).css({
         'cursor' : 'move'
     });
-
-    // var seen_artists = [];
-    // for (var i = 0, ii = billboard.length; i < ii; i++) {
-    // 	var year = billboard[i];
-    // 	for (var k = 0, kk = year.weeks.length; k < kk; k++) {
-    // 		var topTen = year.weeks[k].top_ten;
-    // 		for (var j = 0; j < 10; j++) {
-    // 			var entry = topTen[j];
-    // 			var artist = entry.artist;
-    // 			if (isCollaboration(artist) && seen_artists.indexOf(artist) === -1) {
-    // 				seen_artists.push(artist);
-    // 			}
-    // 		}
-    // 	}
-    // }
-
-    // function isCollaboration(artistName) {
-    // 	var artist = artistName.toLowerCase();
-    // 	return (artist.indexOf("feat") > -1 || artist.indexOf(" featuring ") > -1 || artist.indexOf(" feat. ") > -1 || artist.indexOf(" ft ") > -1 || artist.indexOf(" ft. ") > -1);
-    // 	// return (artist.indexOf("and") > -1 || artist.indexOf(",") > -1 || artist.indexOf("&") > -1 || artist.indexOf("+") > -1 || artist.indexOf("feat") > -1 || artist.indexOf("featuring") > -1 || artist.indexOf("feat.") > -1 || artist.indexOf("ft") > -1 || artist.indexOf("ft.") > -1 || artist.indexOf("with") > -1);
-    // }
-    // // console.log(seen_artists);
-    // seen_artists.forEach(function(artist) {
-    // 	// console.log(artist.split(".*\\Featuring\\b.*"));
-
-    // 	console.log(artist.replace(' Featuring ', '||').replace(' featuring ', '||').replace(' feat ', '||').replace(' Feat ', '||').replace(' Ft ', '||').replace(' ft ', '||').replace(' Feat. ', '||').replace(' feat. ', '||').replace(' Ft. ', '||').replace(' ft. ', '||').split('||'));
-    // });
-
-    // console.log(encodeURIComponent(document.getElementsByTagName("svg")[0].parentNode.innerHTML));
-    // open("data:image/svg+xml," + encodeURIComponent(document.getElementsByTagName("svg")[0].parentNode.innerHTML));
 }
