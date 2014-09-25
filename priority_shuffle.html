@@ -1,18 +1,30 @@
-  <div class="container">
-    <div id="login">
-      <h1>Spotify Playlist Endpoint Demo</h1>
-        <button id="login" class="btn btn-primary">Login with Spotify</button>
+<html lang="en-us">
+	<head>
+		<title>Priority Shuffle</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="style.css" />
+		<script type="text/javascript" src="jquery/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="jquery-ui-1.11.1/jquery-ui.js"></script>
+		<script type="text/javascript" src="PriorityShuffle.js"></script>
+	</head>
+	<body>  
+    <div class="container">
+      <div id="login">
+        <h1>Spotify Playlist Endpoint Demo</h1>
+          <button id="login" class="btn btn-primary">Login with Spotify</button>
+      </div>
+      <div id="loggedin">
+          <div id="playlists">
+              <div id="playlists-list">
+              </div>
+              <div id="playlist-detail">
+              </div>
+          </div>
+          <div id="results"></div>
+      </div>
     </div>
-    <div id="loggedin">
-        <div id="playlists">
-            <div id="playlists-list">
-            </div>
-            <div id="playlist-detail">
-            </div>
-        </div>
-        <div id="results"></div>
-    </div>
-  </div>
+  </body>
+</html>
 
 <script id="playlists-list-template" type="text/x-handlebars-template">
     <ul>
