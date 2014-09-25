@@ -116,7 +116,7 @@ window.onload = function() {
     $('#shuffle').click(function(event) {
         console.log('Attempting shuffle with url', curPlaylistURL);
        $.ajax({
-           url: curPlaylistURL + '/tracks/?uris=' + encodeBigTracks(BIG_TRACKS),
+           url: curPlaylistURL + '/tracks?uris=' + encodeBigTracks(BIG_TRACKS),
            type: 'PUT',
            headers: {
                'Authorization': 'Bearer' + token
