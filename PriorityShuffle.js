@@ -40,6 +40,7 @@ window.onload = function() {
         if (authWindow) {
             authWindow.close();
         }
+        console.log(event.data);
         showInfo(event.data);
     }
     
