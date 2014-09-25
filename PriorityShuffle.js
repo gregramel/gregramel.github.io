@@ -116,11 +116,14 @@ window.onload = function() {
     $('#shuffle').click(function(event) {
         console.log('Attempting shuffle with url', curPlaylistURL);
        $.ajax({
-           url: curPlaylistURL + '/tracks?uris=' + encodeBigTracks(BIG_TRACKS),
+           url: curPlaylistURL + '/tracks',
            type: 'POST',
            headers: {
                'Authorization': 'Bearer' + token
            },
+           data: {
+               ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M"]
+           }
            success: function(response) {
                console.log(response);
                alert('Shuffled successfully');
