@@ -18,7 +18,7 @@ function login() {
     var top = (screen.height / 2) - (height / 2);
     
     var params = {
-        client_id: '8db44d8fec824723bb8057362ed8ea88',
+        client_id: '27657287c7604992b20e73b485f1f09a',
         redirect_uri: 'http://gregramel.github.io/priority_callback',
         scope: 'user-read-private playlist-read-private',
         response_type: 'token'
