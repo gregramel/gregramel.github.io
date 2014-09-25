@@ -18,8 +18,8 @@ function login() {
     var top = (screen.height / 2) - (height / 2);
     
     var params = {
-        client_id: '5fe01282e94241328a84e7c5cc169164',
-        redirect_uri: 'http://jsfiddle.net/3744J/2/show/',
+        client_id: '8db44d8fec824723bb8057362ed8ea88',
+        redirect_uri: 'http://gregramel.github.io/priority_callback.html',
         scope: 'user-read-private playlist-read-private',
         response_type: 'token'
     };
@@ -31,7 +31,7 @@ function login() {
 }
 
 function receiveMessage(event){
-    if (event.origin !== "http://jsfiddle.net") {
+    if (event.origin !== "http://gregramel.github.io") {
         return;
     }
     if (authWindow) {
