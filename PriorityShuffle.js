@@ -19,7 +19,7 @@ function login() {
     
     var params = {
         client_id: '8db44d8fec824723bb8057362ed8ea88',
-        redirect_uri: 'http://gregramel.github.io/priority_callback.html',
+        redirect_uri: 'http://gregramel.github.io/priority_callback',
         scope: 'user-read-private playlist-read-private',
         response_type: 'token'
     };
