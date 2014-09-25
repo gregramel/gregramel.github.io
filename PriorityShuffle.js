@@ -23,6 +23,7 @@ function login() {
         scope: 'user-read-private playlist-read-private',
         response_type: 'token'
     };
+    console.log(toQueryString(params));
     authWindow = window.open(
         "https://accounts.spotify.com/authorize?" + toQueryString(params),
         "Spotify",
