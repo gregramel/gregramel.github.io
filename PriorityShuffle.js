@@ -76,7 +76,8 @@ window.onload = function() {
                     },
                     success: function(response) {
                         console.log(response);
-                        playlistsListPlaceholder.innerHTML = playlistsListTemplate(response.items);
+                        playlistsListPlaceholder.innerHTML = 'Playlists';
+                        // playlistsListPlaceholder.innerHTML = playlistsListTemplate(response.items);
                     }
                 });
              
