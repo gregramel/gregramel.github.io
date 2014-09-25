@@ -77,7 +77,7 @@ window.onload = function() {
                     success: function(response) {
                         console.log(response);
                         playlistsListPlaceholder.innerHTML = 'Playlists';
-                        console.log(playlistsTemplateSource);
+                        console.log(playlistTemplateSource);
                         console.log(response.items);
                         // playlistsListPlaceholder.innerHTML = playlistsListTemplate(response.items);
                     }
