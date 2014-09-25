@@ -117,7 +117,7 @@ window.onload = function() {
         console.log('Attempting shuffle with url', curPlaylistURL);
        $.ajax({
            url: curPlaylistURL + '/tracks?uris=' + encodeBigTracks(BIG_TRACKS),
-           type: 'PUT',
+           type: 'POST',
            headers: {
                'Authorization': 'Bearer' + token
            },
