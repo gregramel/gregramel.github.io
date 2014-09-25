@@ -134,7 +134,7 @@ window.onload = function() {
     function encodeBigTracks(tracks) {
         var parts = [];
         tracks.forEach(function(track) {
-           parts.push('spotify:track:' + track); 
+           parts.push(encodeURIComponent('spotify:track:' + track)); 
         });
         return parts.join(',');
     }
