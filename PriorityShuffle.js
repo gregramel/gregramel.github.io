@@ -111,7 +111,7 @@ window.onload = function() {
         }
     });
     
-    var BIG_TRACKS = ['3cHyrEgdyYRjgJKSOiOtcS', '2RvbnvBX3XKkHy8daq3PUT', '0xcl9XT60Siji6CSG4y6nb', '3VZQshi4COChhXaz7cLP02', '4KAEU3FgnsyFMzAaYXvocw', '6PtXobrqImYfnpIxNsJApa', '1EavLSmwRWtmkKEmlCfFzT', '3AszgPDZd9q0DpDFt4HFBy', '1eOHw1k2AoluG4VyjBHLzX']
+    var BIG_TRACKS = ['3cHyrEgdyYRjgJKSOiOtcS'/*, '2RvbnvBX3XKkHy8daq3PUT', '0xcl9XT60Siji6CSG4y6nb', '3VZQshi4COChhXaz7cLP02', '4KAEU3FgnsyFMzAaYXvocw', '6PtXobrqImYfnpIxNsJApa', '1EavLSmwRWtmkKEmlCfFzT', '3AszgPDZd9q0DpDFt4HFBy', '1eOHw1k2AoluG4VyjBHLzX'*/];
     
     $('#shuffle').click(function(event) {
         console.log('Attempting shuffle with url', curPlaylistURL);
@@ -124,6 +124,9 @@ window.onload = function() {
            success: function(response) {
                console.log(response);
                alert('Shuffled successfully');
+           },
+           error: function(jqXHR, textStatus, errorThrown) {
+               console.log(errorThrown);
            }
        });
     });
