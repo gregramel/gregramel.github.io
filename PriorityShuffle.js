@@ -121,6 +121,7 @@ window.onload = function() {
            headers: {
                'Authorization': 'Bearer ' + token
            },
+           contentType: 'application/json',
            data: '{"uris": [ "spotify:track:5yfLv1CtlTjBLI7qfJ0D5t", "spotify:track:5ejwTEOCsaDEjvhZTcU6lg"]}',
            success: function(response) {
                console.log(response);
