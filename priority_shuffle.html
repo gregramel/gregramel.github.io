@@ -27,11 +27,11 @@
 	    <script id="playlists-list-template" type="text/x-handlebars-template">
 		    <ul>
 		    Playlists
-		     <!--{{#each}}
+		     {{#each item}}
 		         <li>
-		             <a href="#" class="load" data-link="{{href}}">{{name}}</a>
+		             <a href="#" class="load" data-link="{{item.href}}">{{item.name}}</a>
 		         </li>
-		     {{/each}}-->
+		     {{/each}}
 		    </ul>
 		</script>
 		
