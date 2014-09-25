@@ -31,9 +31,9 @@ function login() {
 }
 
 function receiveMessage(event){
-    if (event.origin !== "http://gregramel.github.io") {
-        return;
-    }
+    // if (event.origin !== "http://gregramel.github.io") {
+    //     return;
+    // }
     if (authWindow) {
         authWindow.close();
     }
