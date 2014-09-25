@@ -79,7 +79,7 @@ window.onload = function() {
                         // playlistsListPlaceholder.innerHTML = 'Playlists';
                         // console.log(playlistsListTemplateSource);
                         // console.log(response.items);
-                        playlistsListPlaceholder.innerHTML = playlistsListTemplate(response.items);
+                        playlistsListPlaceholder.innerHTML = playlistsListTemplate(response);
                     }
                 });
              
