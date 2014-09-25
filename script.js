@@ -190,6 +190,18 @@ window.onload = function() {
 		mainDiv.scrollLeft = 0;
 	});
 
+	$(document).keydown(function(event) {
+		switch(event.keyCode) {
+			case 37:
+				mainDiv.scrollLeft -= 180;
+				break;
+			case 39:
+				mainDiv.scrollLeft += 180;
+			default:
+				break;
+		}
+	})
+
 	$("body").bind('mousewheel DOMMouseScroll', function(event) {
 		if (event.originalEvent.wheelDelta) {
 			mainDiv.scrollLeft -= (event.originalEvent.wheelDelta * 2.295);
