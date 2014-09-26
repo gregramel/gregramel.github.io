@@ -1,9 +1,10 @@
 body {
 	font-family: sans-serif;
-	text-align: center;
 }
 
-
+div #index {
+	text-align: center;
+}
 #main {
 	overflow: hidden;
 }
@@ -26,8 +27,4 @@ div .week-div {
 #songInfo {
 	display: block;
 	font-weight: bold;
-}
-
-ul {
-	list-style-type: none;
 }
