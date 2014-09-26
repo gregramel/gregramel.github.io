@@ -1,12 +1,10 @@
 body {
 	font-family: sans-serif;
+	text-align: center;
 }
 
 
 #main {
-	/*width: 20000px;*/
-	/*padding-top: 50px;*/
-	/*display: block;*/
 	overflow: hidden;
 }
 
@@ -30,15 +28,6 @@ div .week-div {
 	font-weight: bold;
 }
 
-/*#toggleText {
-	position: fixed;
-	margin-top: 50px;
-}
-
-#selectYear {
-	position: fixed;
-}*/
-
-#controls {
-	/*position: fixed;*/
+ul {
+	list-style-type: none;
 }
