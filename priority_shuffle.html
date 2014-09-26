@@ -46,6 +46,7 @@
 		            <th>Track</th>
 		            <th>Artist</th>
 		            <th>ID</th>
+		            <th>Type</th>
 		        </tr>
 		    {{#each tracks.items}}
 		        <tr>
@@ -55,7 +56,14 @@
 		                    {{name}}
 		                {{/each}}
 		            </td>
-		            <td>{{track.id}}</td>
+		            <td class="track-id">{{track.id}}</td>
+		            <td class="type-select">
+		            	<div>
+		            		<input type="radio" name="type" value="pregame">Pregame/Intro<br />
+		            		<input type="radio" name="type" value="big">Big Party Songs<br />
+		            		<input type="radio" name="type" value="singalong">Singalongs<br />
+		            	</div>
+		            </td>	
 		        </tr>
 		    {{/each}}
 		    </table>
