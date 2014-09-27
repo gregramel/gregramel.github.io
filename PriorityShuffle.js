@@ -161,7 +161,7 @@ window.onload = function() {
             // console.log($checked.attr("name"), $checked.val());
         });
         console.log(arrays);
-        var shuffledList = priorityShuffle(arrays.playlist, arrays.pregame, arrays.big, arrays.intro, arrays.singalong, arrays.standard);
+        var shuffledList = priorityShuffle(arrays.playlist, arrays.intro, arrays.big, arrays.singalong, arrays.standard);
         console.log(shuffledList);
         // console.log($(".type-select[value=big]:checked"));
     }
