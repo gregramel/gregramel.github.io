@@ -140,7 +140,6 @@ window.onload = function() {
             var $checked = $(this).find("input:checked");
             console.log($checked);
             var id = $(this).find("input").attr("name");
-            if (id == "") continue;
             arrays.playlist.push(id);
             if ($checked[0]) {
                 switch ($checked.val()) {
