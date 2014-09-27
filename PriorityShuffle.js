@@ -136,7 +136,7 @@ window.onload = function() {
     
     function generateTypeLists() {
         $(".type-select").each(function() {
-            var $checked = $(this).find(":checked");
+            var $checked = $(this).find("input:checked");
             console.log($checked);
             // console.log($checked.attr("name"), $checked.val());
         });
