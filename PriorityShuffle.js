@@ -135,11 +135,30 @@ window.onload = function() {
     });
     
     function generateTypeLists() {
+        var arrays = { "playlist": [], "intro": [], "big": [], "singalong": [] };
         $(".type-select").each(function() {
             var $checked = $(this).find("input:checked");
             console.log($checked);
+            var id = $(this).find("input").attr("name");
+            arrays.playlist.push(id);
+            if ($checked[0]) {
+                switch ($checked.val()) {
+                    case "pregame":
+                        arrays.intro.push(id);
+                        break;
+                    case "big":
+                        arrays.big.push(id);
+                        break;
+                    case "singalong":
+                        arrays.singalong.push(id);
+                        break;
+                    default:
+                        break;
+                }
+            }
             // console.log($checked.attr("name"), $checked.val());
         });
+        console.log(arrays);
         // console.log($(".type-select[value=big]:checked"));
     }
     function encodeBigTracks(tracks) {
