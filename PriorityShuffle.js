@@ -114,63 +114,71 @@ window.onload = function() {
     var BIG_TRACKS = ['3cHyrEgdyYRjgJKSOiOtcS'/*, '2RvbnvBX3XKkHy8daq3PUT', '0xcl9XT60Siji6CSG4y6nb', '3VZQshi4COChhXaz7cLP02', '4KAEU3FgnsyFMzAaYXvocw', '6PtXobrqImYfnpIxNsJApa', '1EavLSmwRWtmkKEmlCfFzT', '3AszgPDZd9q0DpDFt4HFBy', '1eOHw1k2AoluG4VyjBHLzX'*/];
     
     $('#shuffle').click(function(event) {
-        generateTypeLists();
-       //  console.log('Attempting shuffle with url', curPlaylistURL, token);
-       // $.ajax({
-       //     url: curPlaylistURL + '/tracks',
-       //     type: 'PUT',
-       //     headers: {
-       //         'Authorization': 'Bearer ' + token
-       //     },
-       //     contentType: 'application/json',
-       //     data: '{"uris": [ "spotify:track:5yfLv1CtlTjBLI7qfJ0D5t", "spotify:track:5ejwTEOCsaDEjvhZTcU6lg"]}',
-       //     success: function(response) {
-       //         console.log(response);
-       //         alert('Shuffled successfully');
-       //     },
-       //     error: function(jqXHR, textStatus, errorThrown) {
-       //         console.log(errorThrown);
-       //     }
-       // });
+        var shuffled = shuffleFromTypes();
+        var uris = encodeTracksToURIs(shuffled);
+        console.log('Attempting shuffle with url', curPlaylistURL, token);
+        $.ajax({
+            url: curPlaylistURL + '/tracks',
+            type: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            contentType: 'application/json',
+            data: JSON.stringify(uris),
+            success: function(response) {
+                console.log(response);
+                alert('Shuffled successfully');
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
     });
     
-    function generateTypeLists() {
+    function shuffleFromTypes() {
         var arrays = { "playlist": [], "intro": [], "big": [], "singalong": [], "standard": [] };
         $(".type-select").each(function() {
             var $checked = $(this).find("input:checked");
             console.log($checked);
             var id = $(this).find("input").attr("name");
-            arrays.playlist.push(id);
-            if ($checked[0]) {
-                switch ($checked.val()) {
-                    case "pregame":
-                        arrays.intro.push(id);
-                        break;
-                    case "big":
-                        arrays.big.push(id);
-                        break;
-                    case "singalong":
-                        arrays.singalong.push(id);
-                        break;
-                    default:
-                        break;
+            if (id != "") {
+                arrays.playlist.push(id);
+                if ($checked[0]) {
+                    switch ($checked.val()) {
+                        case "pregame":
+                            arrays.intro.push(id);
+                            break;
+                        case "big":
+                            arrays.big.push(id);
+                            break;
+                        case "singalong":
+                            arrays.singalong.push(id);
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                    arrays.standard.push(id);
                 }
-            } else {
-                arrays.standard.push(id);
             }
             // console.log($checked.attr("name"), $checked.val());
         });
         console.log(arrays);
         var shuffledList = priorityShuffle(arrays.playlist, arrays.intro, arrays.big, arrays.singalong, arrays.standard);
-        console.log(shuffledList);
+        console.log(shuffledList
+
+        return shuffledList
         // console.log($(".type-select[value=big]:checked"));
     }
-    function encodeBigTracks(tracks) {
-        var parts = [];
+
+    function encodeTracksToURIs(tracks) {
+        var data = {};
+        var URIs = [];
         tracks.forEach(function(track) {
-           parts.push('spotify:track:' + track); 
+            parts.push('spotify:track:' + track);
         });
-        return parts.join(',');
+        data["uris"] = URIs;
+        return data;
     }
     
     
