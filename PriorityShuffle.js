@@ -135,7 +135,11 @@ window.onload = function() {
     });
     
     function generateTypeLists() {
-        console.log($(".type-select[value=big]:checked"));
+        $(".type-select").each(function() {
+            var $checked = $(this).children(":checked");
+            console.log($checked.attr("name"), $checked.val());
+        });
+        // console.log($(".type-select[value=big]:checked"));
     }
     function encodeBigTracks(tracks) {
         var parts = [];
