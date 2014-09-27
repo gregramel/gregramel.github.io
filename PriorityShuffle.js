@@ -165,9 +165,9 @@ window.onload = function() {
         });
         console.log(arrays);
         var shuffledList = priorityShuffle(arrays.playlist, arrays.intro, arrays.big, arrays.singalong, arrays.standard);
-        console.log(shuffledList
+        console.log(shuffledList);
 
-        return shuffledList
+        return shuffledList;
         // console.log($(".type-select[value=big]:checked"));
     }
 
