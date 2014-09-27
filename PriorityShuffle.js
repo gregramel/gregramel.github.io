@@ -175,7 +175,7 @@ window.onload = function() {
         var data = {};
         var URIs = [];
         tracks.forEach(function(track) {
-            parts.push('spotify:track:' + track);
+            URIs.push('spotify:track:' + track);
         });
         data["uris"] = URIs;
         return data;
