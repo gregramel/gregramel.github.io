@@ -135,11 +135,12 @@ window.onload = function() {
     });
     
     function generateTypeLists() {
-        var arrays = { "playlist": [], "intro": [], "big": [], "singalong": [] };
+        var arrays = { "playlist": [], "intro": [], "big": [], "singalong": [], "standard": [] };
         $(".type-select").each(function() {
             var $checked = $(this).find("input:checked");
             console.log($checked);
             var id = $(this).find("input").attr("name");
+            if (id == "") continue;
             arrays.playlist.push(id);
             if ($checked[0]) {
                 switch ($checked.val()) {
@@ -155,10 +156,14 @@ window.onload = function() {
                     default:
                         break;
                 }
+            } else {
+                arrays.standard.push(id);
             }
             // console.log($checked.attr("name"), $checked.val());
         });
         console.log(arrays);
+        var shuffledList = priorityShuffle(arrays.playlist, arrays.pregame, arrays.big, arrays.intro, arrays.singalong, arrays.standard);
+        console.log(shuffledList);
         // console.log($(".type-select[value=big]:checked"));
     }
     function encodeBigTracks(tracks) {
