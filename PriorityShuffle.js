@@ -114,25 +114,29 @@ window.onload = function() {
     var BIG_TRACKS = ['3cHyrEgdyYRjgJKSOiOtcS'/*, '2RvbnvBX3XKkHy8daq3PUT', '0xcl9XT60Siji6CSG4y6nb', '3VZQshi4COChhXaz7cLP02', '4KAEU3FgnsyFMzAaYXvocw', '6PtXobrqImYfnpIxNsJApa', '1EavLSmwRWtmkKEmlCfFzT', '3AszgPDZd9q0DpDFt4HFBy', '1eOHw1k2AoluG4VyjBHLzX'*/];
     
     $('#shuffle').click(function(event) {
-        console.log('Attempting shuffle with url', curPlaylistURL, token);
-       $.ajax({
-           url: curPlaylistURL + '/tracks',
-           type: 'PUT',
-           headers: {
-               'Authorization': 'Bearer ' + token
-           },
-           contentType: 'application/json',
-           data: '{"uris": [ "spotify:track:5yfLv1CtlTjBLI7qfJ0D5t", "spotify:track:5ejwTEOCsaDEjvhZTcU6lg"]}',
-           success: function(response) {
-               console.log(response);
-               alert('Shuffled successfully');
-           },
-           error: function(jqXHR, textStatus, errorThrown) {
-               console.log(errorThrown);
-           }
-       });
+        generateTypeLists();
+       //  console.log('Attempting shuffle with url', curPlaylistURL, token);
+       // $.ajax({
+       //     url: curPlaylistURL + '/tracks',
+       //     type: 'PUT',
+       //     headers: {
+       //         'Authorization': 'Bearer ' + token
+       //     },
+       //     contentType: 'application/json',
+       //     data: '{"uris": [ "spotify:track:5yfLv1CtlTjBLI7qfJ0D5t", "spotify:track:5ejwTEOCsaDEjvhZTcU6lg"]}',
+       //     success: function(response) {
+       //         console.log(response);
+       //         alert('Shuffled successfully');
+       //     },
+       //     error: function(jqXHR, textStatus, errorThrown) {
+       //         console.log(errorThrown);
+       //     }
+       // });
     });
     
+    function generateTypeLists() {
+        console.log($(".type-select[value=big]:checked").name());
+    }
     function encodeBigTracks(tracks) {
         var parts = [];
         tracks.forEach(function(track) {
