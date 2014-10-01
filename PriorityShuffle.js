@@ -75,10 +75,6 @@ window.onload = function() {
                         'Authorization': 'Bearer ' + accessToken
                     },
                     success: function(response) {
-                        console.log(response);
-                        // playlistsListPlaceholder.innerHTML = 'Playlists';
-                        // console.log(playlistsListTemplateSource);
-                        // console.log(response.items);
                         playlistsListPlaceholder.innerHTML = playlistsListTemplate(response);
                     }
                 });
@@ -110,8 +106,6 @@ window.onload = function() {
             });
         }
     });
-    
-    var BIG_TRACKS = ['3cHyrEgdyYRjgJKSOiOtcS'/*, '2RvbnvBX3XKkHy8daq3PUT', '0xcl9XT60Siji6CSG4y6nb', '3VZQshi4COChhXaz7cLP02', '4KAEU3FgnsyFMzAaYXvocw', '6PtXobrqImYfnpIxNsJApa', '1EavLSmwRWtmkKEmlCfFzT', '3AszgPDZd9q0DpDFt4HFBy', '1eOHw1k2AoluG4VyjBHLzX'*/];
     
     $('#shuffle').click(function(event) {
         var shuffled = shuffleFromTypes();
@@ -161,14 +155,12 @@ window.onload = function() {
                     arrays.standard.push(id);
                 }
             }
-            // console.log($checked.attr("name"), $checked.val());
         });
         console.log(arrays);
         var shuffledList = priorityShuffle(arrays.playlist, arrays.intro, arrays.big, arrays.singalong, arrays.standard);
         console.log(shuffledList);
 
         return shuffledList;
-        // console.log($(".type-select[value=big]:checked"));
     }
 
     function encodeTracksToURIs(tracks) {
@@ -179,7 +171,5 @@ window.onload = function() {
         });
         data["uris"] = URIs;
         return data;
-    }
-    
-    
+    }    
 }
