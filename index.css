@@ -10,3 +10,22 @@ div#content {
 	display: table;
 }
 
+body {
+	background-color: #333333;
+	color: #E6E6E6;
+}
+
+a {
+	color: #CC7A29;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:hover {
+	color: #FFCC80;
+}
+
+.contact {
+	font-size: 1.2em;
+}
+
