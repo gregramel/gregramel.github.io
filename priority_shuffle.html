@@ -32,6 +32,7 @@
 	    </div>
 	    
 	    <script id="playlists-list-template" type="text/x-handlebars-template">
+	    	Click a playlist to display its songs and shuffle it.
 		    <ul>
 		     {{#each items}}
 		         <li>
@@ -47,7 +48,7 @@
 		    {{#if images.length}}
 		    <img style="background-image:url({{images.0.url}})" class="cover"/>
 		    {{/if}}
-		    Select a type for each song. Leave all options blank for standard songs.
+		    Select a type for each song if applicable. Leave all options blank for standard songs. Click "shuffle" when done.
 		    <table>
 		        <tr>
 		            <th>Track</th>
