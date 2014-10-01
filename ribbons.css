@@ -1,0 +1,14 @@
+#main {
+	overflow: hidden;
+}
+
+#songInfo {
+	display: block;
+	font-weight: bold;
+}
+
+#detailText {
+	font-size: .9em;
+	font-style: italic;
+	color: #B2B2B2;
+}
