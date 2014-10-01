@@ -2,27 +2,6 @@ body {
 	font-family: sans-serif;
 }
 
-
-#main {
-	overflow: hidden;
-}
-
-#mini {
-	margin-top: 50px;
-}
-
-.week-date {
-	text-align: center;
-}
-
-div .week-div {
-	float: left;
-	width: 200px;
-	text-align: center;
-	margin-right: 50px;
-}
-
-#songInfo {
-	display: block;
-	font-weight: bold;
+a {
+	text-decoration: none;
 }

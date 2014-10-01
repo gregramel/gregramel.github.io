@@ -1,7 +1,8 @@
 <html lang="en-us">
 	<head>
-		<title>Billboard</title>
+		<title>Billboard Ribbons</title>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" href="ribbons.css" />
 		<link rel="stylesheet" href="style.css" />
 		<script type="text/javascript" src="jquery/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="raphael/raphael.js"></script>
@@ -11,7 +12,7 @@
 	</head>
 	<body>
 		<div id="headerDiv">
-			<h1>Billboard Top 10</h1>
+			<h1>Billboard Top 10 Visualization</h1>
 		</div>
 		<div id="main">
 		</div>
@@ -23,7 +24,11 @@
 			</div>
 			<select id="selectYear"></select>
 			<button id="toggleText">Toggle Text</button>
-
+		</div>
+		<div id="detailText">
+			<span>Mouse over a ribbon to see song information. Press "Toggle Text" to show only bold labels. Select a new year from the dropdown to display that year's visualization.</span><br />
+			<span>Scroll graphic by clicking and dragging, scrolling, or using left/right arrow keys.</span><br />
+			<span>All data extracted from <a href="http://billboard.com">Billboard.com</a>.</span>
 		</div>
 	</body>
 </html>
