@@ -1,5 +1,8 @@
 window.onload = function() {
+    $('#shuffle').hide();
     
+    /* Code for logging in and accessing and displaying a user's playlists taken and modified slightly
+        from official Spotify API demo: http://jsfiddle.net/k4v3h/78/ Shuffling code developed independently.*/
     // find template and compile it
     var playlistsListTemplateSource = document.getElementById('playlists-list-template').innerHTML,
         playlistsListTemplate = Handlebars.compile(playlistsListTemplateSource),
@@ -105,8 +108,10 @@ window.onload = function() {
                 }
             });
         }
+        $('#shuffle').show();
     });
     
+    /* Shuffles the playlist with the selected options */
     $('#shuffle').click(function(event) {
         var shuffled = shuffleFromTypes();
         var uris = encodeTracksToURIs(shuffled);
@@ -129,6 +134,7 @@ window.onload = function() {
         });
     });
     
+    /* Arranges songs into the appropriate category arrays based on the selected option */
     function shuffleFromTypes() {
         var arrays = { "playlist": [], "intro": [], "big": [], "singalong": [], "standard": [] };
         $(".type-select").each(function() {
@@ -157,12 +163,15 @@ window.onload = function() {
             }
         });
         console.log(arrays);
+
+        /* Shuffles the playlist based onc ategory arrays */
         var shuffledList = priorityShuffle(arrays.playlist, arrays.intro, arrays.big, arrays.singalong, arrays.standard);
         console.log(shuffledList);
 
         return shuffledList;
     }
 
+    /* Helper function to create a JSON object for the URIs to be passed in request body */
     function encodeTracksToURIs(tracks) {
         var data = {};
         var URIs = [];

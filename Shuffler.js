@@ -1,3 +1,4 @@
+/* Shuffles a playlist with respect to different category songs */
 function priorityShuffle(playlist, pregame, bigSongs, singalongs, standard) {
 	var length = playlist.length;
 	var singAlongStart = Math.floor(.75 * length - 1);
@@ -11,6 +12,8 @@ function priorityShuffle(playlist, pregame, bigSongs, singalongs, standard) {
 	var preLength = preShuffle.length, bigLength = bigShuffle.length, singLength = singShuffle.length, standardLength = standardShuffle.length;
 
 	var shuffled = playlist;
+
+	/* Inserts shuffled intro songs at the beginning */
 	for (var i = 0; i < preLength; i++) {
 		shuffled[i] = preShuffle[i];
 	}
@@ -18,12 +21,14 @@ function priorityShuffle(playlist, pregame, bigSongs, singalongs, standard) {
 	var bigCounter = 0, singCounter = 0, standardCounter = 0;
 
 	for (var j = preLength, jj = length; j < jj; j++) {
+		/* Spaces out big songs */
 		if (j % bigGap === 0 && bigCounter < bigLength) {
 			shuffled[j] = bigShuffle[bigCounter];
 			bigCounter++;
 		} else {
+			/* Places singalongs near the end */
 			if (j >= singAlongStart) {
-				
+				/* Randomly chooses between normal and singalong songs while checking if they're empty */
 				if ((Math.random() > .5 || standardCounter >= standardLength) && singCounter < singLength) {
 					shuffled[j] = singShuffle[singCounter];
 					singCounter++;
