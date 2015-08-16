@@ -3,10 +3,12 @@
 		<title>Priority Shuffle</title>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="jquery-ui-1.11.1/jquery-ui.min.css" />
 		<script type="text/javascript" src="Shuffler.js"></script>
 		<script type="text/javascript" src="PriorityShuffle.js"></script>
 		<script type="text/javascript" src="handlebars.js"></script>
 		<script type="text/javascript" src="jquery/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="jquery-ui-1.11.1/jquery-ui.min.js"></script>
 		
 	</head>
 	<body>  
@@ -49,7 +51,7 @@
 		    <img style="background-image:url({{images.0.url}})" class="cover"/>
 		    {{/if}}
 		    Select a type for each song if applicable. Leave all options blank for standard songs. Click "shuffle" when done.
-		    <table>
+		    <table id="song-table">
 		        <tr>
 		            <th>Track</th>
 		            <th>Artist</th>

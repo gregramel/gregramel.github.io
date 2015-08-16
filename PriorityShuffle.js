@@ -1,5 +1,6 @@
 window.onload = function() {
     $('#shuffle').hide();
+    $('#song-table').selectable();
     
     /* Code for logging in and accessing and displaying a user's playlists taken and modified slightly
         from official Spotify API demo: http://jsfiddle.net/k4v3h/78/ Shuffling code developed independently.*/
