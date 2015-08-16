@@ -1,14 +1,5 @@
 window.onload = function() {
     $('#shuffle').hide();
-    $('#song-table').selectable({
-        filter: 'tr',
-        selected: function(event, ui) {
-            console.log(event);
-            console.log(ui);
-            var s=$(this).find('.ui-selected');
-            console.log(s);
-        }
-    });
     
     /* Code for logging in and accessing and displaying a user's playlists taken and modified slightly
         from official Spotify API demo: http://jsfiddle.net/k4v3h/78/ Shuffling code developed independently.*/
@@ -118,6 +109,15 @@ window.onload = function() {
             });
         }
         $('#shuffle').show();
+        $('#song-table').selectable({
+        filter: 'tr',
+        selected: function(event, ui) {
+            console.log(event);
+            console.log(ui);
+            var s=$(this).find('.ui-selected');
+            console.log(s);
+        }
+    });
     });
     
     /* Shuffles the playlist with the selected options */
