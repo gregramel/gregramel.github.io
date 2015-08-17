@@ -109,8 +109,8 @@ window.onload = function() {
                         filter: 'li'
                     });
                     $('html, body').animate({
-                        scrollTop: $('#song-list').offset().top
-                    }, 2000);
+                        scrollTop: $('#playlist-detail').offset().top
+                    }, 100);
                 }
             });
         }

@@ -11,7 +11,9 @@
 }
 
 #song-list {
+	list-style: none;
 	list-style-type: none;
+	padding: none;
 }
 
 .song-title {
@@ -21,7 +23,7 @@
 .song-item {
 	margin-top: 2px;
 	margin-bottom: 2px;
-	padding: 3px;
+	padding: 5px;
 }
 
 .standard-song {
@@ -29,13 +31,13 @@
 }
 
 .intro-song {
-	background: green;
+	background: #47B56C;
 }
 
 .big-song {
-	background: red;
+	background: #FF4D4D;
 }
 
 .singalong-song {
-	background: blue;
+	background: #00CCFF;
 }
