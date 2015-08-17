@@ -29,6 +29,11 @@
 	font-weight: bold;
 }
 
+.song-image { 
+	width: 40px;
+	height: 40px;
+}
+
 .song-item {
 	margin-top: 2px;
 	margin-bottom: 2px;
