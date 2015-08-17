@@ -29,6 +29,14 @@
 	font-weight: bold;
 }
 
+.song-img-container {
+	float: left;
+}
+
+.song-info-container {
+	float: left;
+}
+
 .song-image { 
 	width: 40px;
 	height: 40px;
@@ -38,7 +46,6 @@
 	margin-top: 2px;
 	margin-bottom: 2px;
 	padding: 5px;
-	float: left;
 }
 
 .standard-song {
