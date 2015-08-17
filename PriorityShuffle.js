@@ -141,18 +141,6 @@ window.onload = function() {
             }
         });
     });
-    
-    var elementPosition = $('#typeButtonsContainer').offset();
-
-    $(window).scroll(function(){
-        if ($('#typeButtonsContainer').offset() != undefined) {
-            if($(window).scrollTop() > $('#typeButtonsContainer').offset().top){
-                $('#typeButtonsContainer').css({'position':'fixed','top':'0'});
-            } else {
-                $('#typeButtonsContainer').css({'position':'static'});
-            }
-        }
-    });
 
     $('#intro-btn').click(function(event) {
         $('.ui-selected').removeClass('singalong-song big-song standard-song').addClass('intro-song');
