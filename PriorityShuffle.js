@@ -159,7 +159,7 @@ window.onload = function() {
     });
 
     $('#playlist-detail').on({
-        mousenter: function(event) {
+        mouseenter: function(event) {
             $(this).addClass('ui-selecting');
         },
         mouseleave: function(event) {
