@@ -137,6 +137,23 @@ window.onload = function() {
             }
         });
     });
+
+    $('#intro-btn').click(function(event) {
+        $('.ui-selected').removeClass('singalong-song big-song').addClass('intro-song');
+    });
+
+    $('.big-btn').click(function(event) {
+        $('.ui-selected').removeClass('singalong-song intro-song').addClass('big-song');
+    });
+
+    $('.singalong-btn').click(function(event) {
+        $('.ui-selected').removeClass('intro-song big-song').addClass('singalong-song');
+    });
+
+    $('std-btn').click(function(event) {
+        $('.ui-selected').removeClass('intro-song big-song singalong-song');
+    });
+
     
     /* Arranges songs into the appropriate category arrays based on the selected option */
     function shuffleFromTypes() {

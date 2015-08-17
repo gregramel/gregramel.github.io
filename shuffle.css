@@ -20,5 +20,18 @@
 }
 
 .song-item {
-	margin-top: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.song-item .intro-song {
+	background: green;
+}
+
+.song-item .big-song {
+	background: red;
+}
+
+.song-item .singalong-song {
+	background: blue;
 }
