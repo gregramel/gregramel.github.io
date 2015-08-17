@@ -158,6 +158,11 @@ window.onload = function() {
         $('.ui-selected').removeClass('intro-song big-song singalong-song').addClass('standard-song');
     });
 
+    $('#song-list li').hover(function(event) {
+        $this.addClass('ui-selecting');
+    }, function(event) {
+        $this.removeClass('ui-selecting');
+    });
     
     /* Arranges songs into the appropriate category arrays based on the selected option */
     function shuffleFromTypes() {
