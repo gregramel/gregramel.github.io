@@ -105,14 +105,8 @@ window.onload = function() {
                 success: function(response) {
                     console.log(response);
                     playlistDetailPlaceholder.innerHTML = playlistDetailTemplate(response);
-                    $('#song-table').selectable({
-                        filter: 'tr',
-                        selected: function(event, ui) {
-                            console.log(event);
-                            console.log(ui);
-                            var s=$(this).find('.ui-selected');
-                            console.log(s);
-                        }
+                    $('#song-list').selectable({
+                        filter: 'li'
                     });
                 }
             });

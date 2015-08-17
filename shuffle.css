@@ -1,3 +1,7 @@
+#song-table .ui-selecting {
+	background: #FECA40;
+}
 #song-table .ui-selected {
-	background: red
+	background: #F39814;
+	color: white;
 }
