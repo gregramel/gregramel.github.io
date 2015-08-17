@@ -158,7 +158,7 @@ window.onload = function() {
         $('.ui-selected').removeClass('intro-song big-song singalong-song').addClass('standard-song');
     });
 
-    $('#song-list > li').hover(function(event) {
+    $('.song-list-element').hover(function(event) {
         console.log('mousenter');
         $(this).addClass('ui-selecting');
     }, function(event) {
