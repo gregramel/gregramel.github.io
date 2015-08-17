@@ -141,6 +141,16 @@ window.onload = function() {
             }
         });
     });
+    
+    var elementPosition = $('#typeButtonsContainer').offset();
+
+    $(window).scroll(function(){
+        if($(window).scrollTop() > elementPosition.top){
+            $('#typeButtonsContainer').css({'position':'fixed','top':'0'});
+        } else {
+            $('#typeButtonsContainer').css({'position':'static'});
+        }    
+    });
 
     $('#intro-btn').click(function(event) {
         $('.ui-selected').removeClass('singalong-song big-song standard-song').addClass('intro-song');
