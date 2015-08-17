@@ -1,7 +1,16 @@
-#song-table .ui-selecting {
+#song-list .ui-selecting {
 	background: #FECA40;
 }
-#song-table .ui-selected {
+#song-list .ui-selected {
 	background: #F39814;
 	color: white;
+}
+#song-list {
+	list-style-type: none;
+}
+.song-artist {
+	font-weight: bold;
+}
+.song-item {
+	margin-top: 5px;
 }
