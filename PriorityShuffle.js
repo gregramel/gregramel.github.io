@@ -114,7 +114,7 @@ window.onload = function() {
                 }
             });
         }
-        $('#shuffle').show();
+        // $('#shuffle').show();
 
 
     });
