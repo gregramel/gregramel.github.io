@@ -3,12 +3,11 @@
 }
 
 #song-list .ui-selecting {
-	background: #FECA40;
+	opacity: 0.75;
 }
 
 #song-list .ui-selected {
-	background: #F39814;
-	color: white;
+	border-color: black;
 }
 
 #song-list {
