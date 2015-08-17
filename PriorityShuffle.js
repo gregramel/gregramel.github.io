@@ -145,7 +145,7 @@ window.onload = function() {
     var elementPosition = $('#typeButtonsContainer').offset();
 
     $(window).scroll(function(){
-        if $('#typeButtonsContainer').offset() != undefined {
+        if ($('#typeButtonsContainer').offset() != undefined) {
             if($(window).scrollTop() > $('#typeButtonsContainer').offset().top){
                 $('#typeButtonsContainer').css({'position':'fixed','top':'0'});
             } else {
