@@ -22,7 +22,7 @@
 }
 
 #song-list li {
-	border-radius: 3px;
+	border-radius: 5px;
 }
 
 .song-title {
@@ -33,6 +33,7 @@
 	margin-top: 2px;
 	margin-bottom: 2px;
 	padding: 5px;
+	float: left;
 }
 
 .standard-song {

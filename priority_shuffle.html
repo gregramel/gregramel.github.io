@@ -60,10 +60,17 @@
 		    {{#each tracks.items}}
 		    	<li class="standard-song">
 		    		<div class="song-item">
-		    			<span class="song-title">{{track.name}}</span><br />
-	    			{{#each track.artists}}
-	    				<span class="song-artist">{{name}}{{#unless @last}}, {{/unless}}</span>
-	    			{{/each}}
+		    			<div class="song-img-container">
+		    			{{#if track.album.images.length}}
+		    				<img src="{{track.album.images.0.url}}" class="song-img"/>
+		    			{{/if}}
+		    			</div>
+		    			<div class="song-info-container">
+			    			<span class="song-title">{{track.name}}</span><br />
+		    			{{#each track.artists}}
+		    				<span class="song-artist">{{name}}{{#unless @last}}, {{/unless}}</span>
+		    			{{/each}}
+		    			</div>
 	    			</div>
 	    		</li>
 		    {{/each}}
