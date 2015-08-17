@@ -14,10 +14,6 @@
 	list-style-type: none;
 }
 
-#song-list li {
-	background: gray;
-}
-
 .song-title {
 	font-weight: bold;
 }
@@ -25,6 +21,10 @@
 .song-item {
 	margin-top: 2px;
 	margin-bottom: 2px;
+}
+
+.standard-song {
+	background: gray;
 }
 
 .intro-song {
