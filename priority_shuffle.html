@@ -62,7 +62,7 @@
 		    		<div class="song-item">
 		    			<span class="song-title">{{track.name}}</span><br />
 	    			{{#each track.artists}}
-	    				<span class="song-artist">{{#if @index}}, {{/if}}{{name}}</span>
+	    				<span class="song-artist">{{name}}{{#unless @index}}, {{/unless}}</span>
 	    			{{/each}}
 	    			</div>
 	    		</li>
