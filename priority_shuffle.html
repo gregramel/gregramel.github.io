@@ -25,19 +25,11 @@
 	      	</div>
 	      	<div id="loggedin">
 	          	<div id="playlists">
-	          		<div id="playlistContainer">
 		              	<div id="playlists-list">
 		              	</div>
 		              	
 		              	<div id="playlist-detail">
 		              	</div>
-	          		</div>
-	              	<div id="typeButtonsContainer">
-	              		<button id="intro-btn">Intro/Pregame</button><br />
-		              	<button id="big-btn">Big Party Song</button><br />
-		              	<button id="singalong-btn">Drunk Singalongs</button><br />
-		              	<button id="std-btn">Normal Song (Clear Selection)</button>
-	              	</div>
 	          	</div>
 	        	<div id="results"></div>
 	      	</div>
@@ -55,31 +47,39 @@
 		</script>
 		
 		<script id="playlist-detail-template" type="text/x-handlebars-template">
-		    <h2>{{name}}</h2>
-		    <p>{{{description}}}</p>
-		    {{#if images.length}}
-		    <img src="{{images.0.url}}" class="cover"/>
-		    {{/if}}
-		    Select a type for each song if applicable. Leave all options blank for standard songs. Click "shuffle" when done.
-		    <ul id="song-list">
-		    {{#each tracks.items}}
-		    	<li class="standard-song song-list-element">
-		    		<div class="song-item">
-		    			<div class="song-img-container">
-		    			{{#if track.album.images.length}}
-		    				<img src="{{track.album.images.2.url}}" class="song-img"/>
-		    			{{/if}}
+			<div id=playlistContainer>
+			    <h2>{{name}}</h2>
+			    <p>{{{description}}}</p>
+			    {{#if images.length}}
+			    <img src="{{images.0.url}}" class="cover"/>
+			    {{/if}}
+			    Select a type for each song if applicable. Leave all options blank for standard songs. Click "shuffle" when done.
+			    <ul id="song-list">
+			    {{#each tracks.items}}
+			    	<li class="standard-song song-list-element">
+			    		<div class="song-item">
+			    			<div class="song-img-container">
+			    			{{#if track.album.images.length}}
+			    				<img src="{{track.album.images.2.url}}" class="song-img"/>
+			    			{{/if}}
+			    			</div>
+			    			<div class="song-info-container">
+				    			<span class="song-title">{{track.name}}</span><br />
+			    			{{#each track.artists}}
+			    				<span class="song-artist">{{name}}{{#unless @last}}, {{/unless}}</span>
+			    			{{/each}}
+			    			</div>
 		    			</div>
-		    			<div class="song-info-container">
-			    			<span class="song-title">{{track.name}}</span><br />
-		    			{{#each track.artists}}
-		    				<span class="song-artist">{{name}}{{#unless @last}}, {{/unless}}</span>
-		    			{{/each}}
-		    			</div>
-	    			</div>
-	    		</li>
-		    {{/each}}
-		    </ul>
+		    		</li>
+			    {{/each}}
+			    </ul>
+			</div>
+		    <div id="typeButtonsContainer">
+	            <button id="intro-btn">Intro/Pregame</button><br />
+		        <button id="big-btn">Big Party Song</button><br />
+		        <button id="singalong-btn">Drunk Singalongs</button><br />
+		        <button id="std-btn">Normal Song (Clear Selection)</button>
+	        </div>
 		    <table id="song-table">
 		        <tr>
 		            <th>Track</th>
