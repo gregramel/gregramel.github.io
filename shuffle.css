@@ -2,6 +2,11 @@
 	width: 800px;
 }
 
+.cover {
+	width: 200px;
+	height: 200px;
+}
+
 #song-list .ui-selecting {
 	opacity: 0.5;
 }
@@ -21,6 +26,7 @@
 }
 
 .song-item {
+	border-radius: 3px;
 	margin-top: 2px;
 	margin-bottom: 2px;
 	padding: 5px;
