@@ -158,13 +158,14 @@ window.onload = function() {
         $('.ui-selected').removeClass('intro-song big-song singalong-song').addClass('standard-song');
     });
 
-    $('.song-list-element').hover(function(event) {
-        console.log('mousenter');
-        $(this).addClass('ui-selecting');
-    }, function(event) {
-        console.log('mouseleave');
-        $(this).removeClass('ui-selecting');
-    });
+    $('#playlist-detail').on({
+        mousenter: function(event) {
+            $(this).addClass('ui-selecting');
+        },
+        mouseleave: function(event) {
+            $(this).removeClass('ui-selecting');
+        }
+    }, '.song-list-element');
     
     /* Arranges songs into the appropriate category arrays based on the selected option */
     function shuffleFromTypes() {
