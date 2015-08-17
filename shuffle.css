@@ -1,5 +1,14 @@
-#playlist-detail {
+#playlists {
+	overflow: auto;
+}
+
+#playlistContainer {
 	width: 800px;
+	float: left;
+}
+
+#typeButtonsContainer {
+	float: left;
 }
 
 .cover {
