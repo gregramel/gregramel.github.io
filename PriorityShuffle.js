@@ -160,10 +160,10 @@ window.onload = function() {
 
     $('#playlist-detail').on({
         mouseenter: function(event) {
-            $(this).css('border', '1px solid black');
+            $(this).css({'border': '1px solid black', 'margin': '-1px'});
         },
         mouseleave: function(event) {
-            $(this).css('border', 'none');
+            $(this).css({'border': 'none', 'margin': '0px'});
         }
     }, '.song-list-element');
     
