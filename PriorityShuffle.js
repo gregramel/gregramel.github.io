@@ -108,10 +108,14 @@ window.onload = function() {
                     $('#song-list').selectable({
                         filter: 'li'
                     });
+                    $('html, body').animate({
+                        scrollTop: $('#song-list').offset().top
+                    }, 2000);
                 }
             });
         }
         $('#shuffle').show();
+
 
     });
     
