@@ -8,6 +8,7 @@
 
 #song-list .ui-selected {
 	border-color: black;
+	border: 2px;
 }
 
 #song-list {
