@@ -3,17 +3,19 @@
 }
 
 #song-list .ui-selecting {
-	opacity: 0.75;
+	opacity: 0.5;
 }
 
 #song-list .ui-selected {
-	border-color: black;
-	border-style: solid;
-	border-width: 2px;
+	opacity: 0.75;
 }
 
 #song-list {
 	list-style-type: none;
+}
+
+#song-list li {
+	background: gray;
 }
 
 .song-title {
@@ -21,8 +23,8 @@
 }
 
 .song-item {
-	padding-top: 5px;
-	padding-bottom: 5px;
+	margin-top: 2px;
+	margin-bottom: 2px;
 }
 
 .intro-song {
