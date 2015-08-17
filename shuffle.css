@@ -31,10 +31,12 @@
 
 .song-img-container {
 	float: left;
+	position: absolute;
 }
 
 .song-info-container {
 	float: left;
+	position: absolute;
 }
 
 .song-image { 
@@ -46,6 +48,7 @@
 	margin-top: 2px;
 	margin-bottom: 2px;
 	padding: 5px;
+	position: relative;
 }
 
 .standard-song {
