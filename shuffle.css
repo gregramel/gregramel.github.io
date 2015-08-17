@@ -13,7 +13,7 @@
 #song-list {
 	list-style: none;
 	list-style-type: none;
-	padding: none;
+	padding-left:0;
 }
 
 .song-title {
