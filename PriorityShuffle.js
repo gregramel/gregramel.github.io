@@ -142,19 +142,19 @@ window.onload = function() {
         });
     });
 
-    $('.playlist-detail').on('click', '#intro-btn', function(event) {
+    $('#playlist-detail').on('click', '#intro-btn', function(event) {
         $('.ui-selected').removeClass('singalong-song big-song standard-song').addClass('intro-song');
     });
 
-    $('.playlist-detail').on('click', '#big-btn', function(event) {
+    $('#playlist-detail').on('click', '#big-btn', function(event) {
         $('.ui-selected').removeClass('singalong-song intro-song standard-song').addClass('big-song');
     });
 
-    $('.playlist-detail').on('click', '#singalong-btn', function(event) {
+    $('#playlist-detail').on('click', '#singalong-btn', function(event) {
         $('.ui-selected').removeClass('intro-song big-song standard-song').addClass('singalong-song');
     });
 
-    $('.playlist-detail').on('click', '#std-btn', function(event) {
+    $('#playlist-detail').on('click', '#std-btn', function(event) {
         $('.ui-selected').removeClass('intro-song big-song singalong-song').addClass('standard-song');
     });
 
