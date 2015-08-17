@@ -24,14 +24,14 @@
 	padding-bottom: 5px;
 }
 
-.song-item .intro-song {
+.intro-song {
 	background: green;
 }
 
-.song-item .big-song {
+.big-song {
 	background: red;
 }
 
-.song-item .singalong-song {
+.singalong-song {
 	background: blue;
 }
