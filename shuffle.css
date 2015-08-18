@@ -35,7 +35,7 @@
 }
 
 .song-list-element:hover {
-	color: white;
+	opacity: 0.5;
 }
 
 .song-title {
