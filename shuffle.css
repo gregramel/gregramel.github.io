@@ -17,11 +17,11 @@
 }
 
 #song-list .ui-selecting {
-	opacity: 0.5;
+	opacity: 0.75;
 }
 
 #song-list .ui-selected {
-	opacity: 0.75;
+	opacity: 0.5;
 }
 
 #song-list {
@@ -35,7 +35,7 @@
 }
 
 .song-list-element:hover {
-	opacity: 0.5;
+	opacity: 0.75;
 }
 
 .song-title {
