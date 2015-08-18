@@ -53,6 +53,10 @@
 	/*position: absolute;*/
 }
 
+.song-buttons-container {
+	float: left;
+}
+
 .song-img { 
 	width: 40px;
 	height: 40px;
