@@ -203,7 +203,7 @@ window.onload = function() {
             console.log(id);
         })
         console.log(arrays);
-        if (arrays.playlist.length !== 0) {
+        if (arrays.playlist.length === 0) {
             return null;
         }
 
