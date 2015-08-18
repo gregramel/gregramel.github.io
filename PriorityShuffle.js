@@ -201,7 +201,7 @@ window.onload = function() {
         $('.song-list-element').each(function() {
             var id = $(this).attr('trackID');
             console.log(id);
-            arrays.playlist.standard.push(id);
+            arrays.playlist.push(id);
             if $(this).hasClass('intro-song') {
                 arrays.intro.push(id);
             } else if $(this).hasClass('big-song') {
