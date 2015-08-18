@@ -202,11 +202,11 @@ window.onload = function() {
             var id = $(this).attr('trackID');
             console.log(id);
             arrays.playlist.push(id);
-            if $(this).hasClass('intro-song') {
+            if ($(this).hasClass('intro-song')) {
                 arrays.intro.push(id);
-            } else if $(this).hasClass('big-song') {
+            } else if ($(this).hasClass('big-song')) {
                 arrays.big.push(id);
-            } else if $(this).hasClass('singalong-song') {
+            } else if ($(this).hasClass('singalong-song')) {
                 arrays.singalong.push(id);
             } else {
                 arrays.standard.push(id);
