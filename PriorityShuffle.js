@@ -125,22 +125,22 @@ window.onload = function() {
         if (shuffled === null) return;
         var uris = encodeTracksToURIs(shuffled);
         console.log('Attempting shuffle with url', curPlaylistURL, token);
-        // $.ajax({
-        //     url: curPlaylistURL + '/tracks',
-        //     type: 'PUT',
-        //     headers: {
-        //         'Authorization': 'Bearer ' + token
-        //     },
-        //     contentType: 'application/json',
-        //     data: JSON.stringify(uris),
-        //     success: function(response) {
-        //         console.log(response);
-        //         alert('Shuffled successfully');
-        //     },
-        //     error: function(jqXHR, textStatus, errorThrown) {
-        //         console.log(errorThrown);
-        //     }
-        // });
+        $.ajax({
+            url: curPlaylistURL + '/tracks',
+            type: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            contentType: 'application/json',
+            data: JSON.stringify(uris),
+            success: function(response) {
+                console.log(response);
+                alert('Shuffled successfully');
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
     });
 
     $('#playlist-detail').on('click', '#intro-btn', function(event) {
