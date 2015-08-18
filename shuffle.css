@@ -34,6 +34,10 @@
 	border-radius: 5px;
 }
 
+.song-list-element:hover {
+	color: white;
+}
+
 .song-title {
 	font-weight: bold;
 }

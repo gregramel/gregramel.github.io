@@ -114,7 +114,7 @@ window.onload = function() {
                 }
             });
         }
-        // $('#shuffle').show();
+        $('#shuffle').show();
 
 
     });
@@ -159,45 +159,49 @@ window.onload = function() {
         $('.ui-selected').removeClass('intro-song big-song singalong-song').addClass('standard-song');
     });
 
-    $('#playlist-detail').on({
-        mouseenter: function(event) {
-            // $(this).css({'border': '1px solid black', 'margin': '-1px'});
-            $(this).css('color', 'white');
-        },
-        mouseleave: function(event) {
-            // $(this).css({'border': 'none', 'margin': '0px'});
-            $(this).css('color', 'black');
-        }
-    }, '.song-list-element');
+    // $('#playlist-detail').on({
+    //     mouseenter: function(event) {
+    //         // $(this).css({'border': '1px solid black', 'margin': '-1px'});
+    //         $(this).css('color', 'white');
+    //     },
+    //     mouseleave: function(event) {
+    //         // $(this).css({'border': 'none', 'margin': '0px'});
+    //         $(this).css('color', 'black');
+    //     }
+    // }, '.song-list-element');
     
     /* Arranges songs into the appropriate category arrays based on the selected option */
     function shuffleFromTypes() {
         var arrays = { "playlist": [], "intro": [], "big": [], "singalong": [], "standard": [] };
-        $(".type-select").each(function() {
-            var $checked = $(this).find("input:checked");
-            console.log($checked);
-            var id = $(this).find("input").attr("name");
-            if (id != "") {
-                arrays.playlist.push(id);
-                if ($checked[0]) {
-                    switch ($checked.val()) {
-                        case "pregame":
-                            arrays.intro.push(id);
-                            break;
-                        case "big":
-                            arrays.big.push(id);
-                            break;
-                        case "singalong":
-                            arrays.singalong.push(id);
-                            break;
-                        default:
-                            break;
-                    }
-                } else {
-                    arrays.standard.push(id);
-                }
-            }
-        });
+        // $(".type-select").each(function() {
+        //     var $checked = $(this).find("input:checked");
+        //     console.log($checked);
+        //     var id = $(this).find("input").attr("name");
+        //     if (id != "") {
+        //         arrays.playlist.push(id);
+        //         if ($checked[0]) {
+        //             switch ($checked.val()) {
+        //                 case "pregame":
+        //                     arrays.intro.push(id);
+        //                     break;
+        //                 case "big":
+        //                     arrays.big.push(id);
+        //                     break;
+        //                 case "singalong":
+        //                     arrays.singalong.push(id);
+        //                     break;
+        //                 default:
+        //                     break;
+        //             }
+        //         } else {
+        //             arrays.standard.push(id);
+        //         }
+        //     }
+        // });
+        $('.song-list-element').each(function() {
+            var id = $(this).attr('trackID');
+            console.log(id);
+        })
         console.log(arrays);
         if (arrays.playlist.length !== 0) {
             return null;
