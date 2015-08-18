@@ -122,24 +122,25 @@ window.onload = function() {
     /* Shuffles the playlist with the selected options */
     $('#shuffle').click(function(event) {
         var shuffled = shuffleFromTypes();
+        if (shuffled === null) return;
         var uris = encodeTracksToURIs(shuffled);
         console.log('Attempting shuffle with url', curPlaylistURL, token);
-        $.ajax({
-            url: curPlaylistURL + '/tracks',
-            type: 'PUT',
-            headers: {
-                'Authorization': 'Bearer ' + token
-            },
-            contentType: 'application/json',
-            data: JSON.stringify(uris),
-            success: function(response) {
-                console.log(response);
-                alert('Shuffled successfully');
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(errorThrown);
-            }
-        });
+        // $.ajax({
+        //     url: curPlaylistURL + '/tracks',
+        //     type: 'PUT',
+        //     headers: {
+        //         'Authorization': 'Bearer ' + token
+        //     },
+        //     contentType: 'application/json',
+        //     data: JSON.stringify(uris),
+        //     success: function(response) {
+        //         console.log(response);
+        //         alert('Shuffled successfully');
+        //     },
+        //     error: function(jqXHR, textStatus, errorThrown) {
+        //         console.log(errorThrown);
+        //     }
+        // });
     });
 
     $('#playlist-detail').on('click', '#intro-btn', function(event) {
@@ -198,6 +199,9 @@ window.onload = function() {
             }
         });
         console.log(arrays);
+        if (arrays.playlist.length !== 0) {
+            return null;
+        }
 
         /* Shuffles the playlist based onc ategory arrays */
         var shuffledList = priorityShuffle(arrays.playlist, arrays.intro, arrays.big, arrays.singalong, arrays.standard);
