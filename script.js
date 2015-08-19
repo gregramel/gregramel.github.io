@@ -161,8 +161,7 @@ window.onload = function() {
 
 	year = billboard[55];
 
-	// wc.init('main');
-	$('#main').load(year.year + '_rendered.html');
+	wc.init('main');
 
 	$('#songInfo').css("visibility", "hidden");
 	
@@ -187,12 +186,7 @@ window.onload = function() {
 		if ($(this).val() == -1) return;
 		year = billboard[$(this).val()];
 		$('#main').empty();
-		if (year.year == 2013) {
-			console.log('loading from rendered file');
-			$('#main').load('2013_rendered.html');
-		} else {
-			wc.init('main');
-		}
+		wc.init('main');
 		mainDiv.scrollLeft = 0;
 	});
 
