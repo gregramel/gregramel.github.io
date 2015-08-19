@@ -161,7 +161,8 @@ window.onload = function() {
 
 	year = billboard[55];
 
-	wc.init('main');
+	// wc.init('main');
+	$('#main').load(year.year + '_rendered.html');
 
 	$('#songInfo').css("visibility", "hidden");
 	
