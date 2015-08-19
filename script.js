@@ -186,7 +186,12 @@ window.onload = function() {
 		if ($(this).val() == -1) return;
 		year = billboard[$(this).val()];
 		$('#main').empty();
-		wc.init('main');
+		if (year.year == 2013) {
+			console.log('loading from rendered file');
+			$('#main').load('2013_rendered.html');
+		} else {
+			wc.init('main');
+		}
 		mainDiv.scrollLeft = 0;
 	});
 
