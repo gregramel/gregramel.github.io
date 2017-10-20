@@ -12,11 +12,13 @@ function priorityShuffle(playlist, pregame, bigSongs, singalongs, standard) {
 	var preLength = preShuffle.length, bigLength = bigShuffle.length, singLength = singShuffle.length, standardLength = standardShuffle.length;
 
 	var shuffled = playlist;
+	console.log(shuffled);
 
 	/* Inserts shuffled intro songs at the beginning */
 	for (var i = 0; i < preLength; i++) {
 		shuffled[i] = preShuffle[i];
 	}
+	console.log(shuffled, playlist);
 
 	var bigCounter = 0, singCounter = 0, standardCounter = 0;
 
